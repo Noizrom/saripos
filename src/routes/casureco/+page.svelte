@@ -125,15 +125,20 @@
 </script>
 
 <div class="flex min-h-screen flex-col items-center justify-start bg-base-200 p-4">
-	<div class="card mb-6 w-full max-w-md bg-base-100 shadow-xl">
+	<div class="card mb-6 w-full max-w-lg bg-base-100 shadow-xl">
 		<div class="card-body">
-			<h2 class="mb-4 card-title text-center">Casureco Bill Search</h2>
+			<h2
+				class="mb-4 rounded-box border border-black/10 bg-blue-800/30 py-2 text-center text-2xl font-bold tracking-wider uppercase drop-shadow-md text-shadow-base-content/20 text-shadow-md"
+			>
+				Casureco Bill Search
+			</h2>
 			<div class="form-control mb-3">
 				<!-- svelte-ignore a11y_label_has_associated_control -->
-				<label class="label">
+				<label class="label mb-2 flex w-fit flex-row gap-2 text-left">
 					<span class="label-text">Account Number</span>
+					<span class="text-sm font-light text-base-content/40">(6 characters)</span>
 				</label>
-				<div class="flex justify-center gap-2">
+				<div class="flex justify-around gap-2">
 					{#each pinDigits as digit, i}
 						<input
 							type="text"
@@ -150,10 +155,11 @@
 					{/each}
 				</div>
 			</div>
-			<div class="form-control mb-3 flex w-full flex-row justify-between">
+			<div class="form-control mb-3 flex w-full flex-row justify-between gap-2">
 				<!-- svelte-ignore a11y_label_has_associated_control -->
-				<label class="label">
-					<span class="label-text">Route Code (3 characters)</span>
+				<label class="label flex flex-col gap-0">
+					<span class="label-text">Route Code</span>
+					<span class="text-sm font-light text-base-content/40">(3 characters)</span>
 				</label>
 				<input
 					type="text"
@@ -163,14 +169,14 @@
 					placeholder="Route"
 					bind:this={routeCodeRef}
 				/>
+				<button
+					class="btn grow btn-primary"
+					onclick={fetchBill}
+					disabled={loading || !account_no || !route_code}
+				>
+					{loading ? 'Searching...' : 'Search'}
+				</button>
 			</div>
-			<button
-				class="btn w-full btn-primary"
-				onclick={fetchBill}
-				disabled={loading || !account_no || !route_code}
-			>
-				{loading ? 'Searching...' : 'Search'}
-			</button>
 			{#if error}
 				<div class="mt-4 alert alert-error">{error}</div>
 			{/if}
@@ -178,10 +184,10 @@
 	</div>
 
 	{#if displayBillData && displayBillData.success}
-		<div class="card mb-6 w-full max-w-2xl bg-base-100 shadow-lg">
+		<div class="card mb-6 w-full max-w-lg bg-base-100 shadow-lg">
 			<div class="card-body">
 				<h3 class="divider mb-4 card-title w-full text-center text-2xl text-success">
-					Bill Information
+					Bill Information (Example)
 				</h3>
 				<div class="space-y-3">
 					{#if displayBillData.accountNumber}
@@ -231,7 +237,7 @@
 
 	<!-- Mini stats for general rates from API -->
 	{#if displayBillData && displayBillData.success && getRates(displayBillData).length}
-		<div class="mx-auto mt-8 w-full max-w-2xl">
+		<div class="mx-auto mt-8 w-full max-w-xl">
 			<div class="flex flex-wrap bg-base-200 text-xs shadow">
 				{#each getRates(displayBillData) as rate}
 					<div class="stat flex-1">

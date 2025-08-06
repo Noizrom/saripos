@@ -37,6 +37,7 @@
 		"vite": "^7.0.4"
 	},
 	"dependencies": {
+		"@iconify/svelte": "^5.0.1",
 		"@point-of-sale/receipt-printer-encoder": "^3.0.3",
 		"daisyui": "^5.0.50",
 		"svelte-dnd-action": "^0.9.64"
