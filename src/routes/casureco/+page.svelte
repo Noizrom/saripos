@@ -124,10 +124,7 @@
 	}
 </script>
 
-<div
-	class="flex min-h-screen flex-col items-center justify-start bg-base-200 p-4"
-	data-theme="light"
->
+<div class="flex min-h-screen flex-col items-center justify-start bg-base-200 p-4">
 	<div class="card mb-6 w-full max-w-md bg-base-100 shadow-xl">
 		<div class="card-body">
 			<h2 class="mb-4 card-title text-center">Casureco Bill Search</h2>
